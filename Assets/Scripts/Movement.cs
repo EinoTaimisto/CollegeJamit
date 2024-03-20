@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public Vector2 speed = new Vector2 (50, 50);
+    public Vector2 speed = new Vector2 (10, 10);
 
     public void FixedUpdate()
     {
