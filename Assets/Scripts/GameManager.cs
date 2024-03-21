@@ -1,27 +1,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class NewBehaviourScript : MonoBehaviour
 {
+    public GameObject door;
 
     [Header("TextField")]
-    public Text QuestBox;
+    public Text KillCount;
     public Text timerText;
-
-    private bool questActivated = false;
 
     public double currentTime;
     public bool countDown;
 
+    public Enemy enemy; 
+
+
     void Update()
     {
-        if (questActivated)
+        
+        currentTime = countDown ? currentTime -= Time.deltaTime : currentTime += Time.deltaTime;
+        timerText.text = currentTime.ToString("00.00");
+        string KC = enemy.EnemyCount.ToString();
+        KillCount.text = KC;
+
+        if(KC == "0")
         {
-            currentTime = countDown ? currentTime -= Time.deltaTime : currentTime += Time.deltaTime;
-            timerText.text = currentTime.ToString("00.00");
+            door.SetActive(false);
+            //SceneManager.LoadScene("MainMenu");
         }
+
     }
 
 }
