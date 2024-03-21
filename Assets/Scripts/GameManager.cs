@@ -1,32 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using TMPro;
-using UnityEngine.SocialPlatforms.Impl;
 
 public class NewBehaviourScript : MonoBehaviour
 {
-    public float timeElapsed;
-    public GameObject PlayFieldCanvas;
-    
+    [Header("Spawners")]
+    public GameObject characterModel;
+    public Transform characterSpawnPoint;
+    public GameObject trashcanPrefab;
+    public Transform[] trashcanSpawnPoints;
+    public GameObject notePrefab;
+    public Transform[] noteSpawnPoints;
 
-    [Header("Timer Settings")]
-    public Text timerText;
-    public double currentTime;
-    public bool countDown;
-
-    [Header("Quests")]
+    [Header("TextField")]
     public Text QuestBox;
+    public Text timerText;
 
     private bool questActivated = false;
-    //public string QuestType;
-
-    void Start()
-    {
-
-    }
+    private string currentQuestType;
+    private int trashcansCollected = 0;
+    private int notesCollected = 0;
+    private bool playerNearMika = false;
+    public double currentTime;
+    public bool countDown;
 
     void Update()
     {
@@ -36,45 +33,102 @@ public class NewBehaviourScript : MonoBehaviour
             timerText.text = currentTime.ToString("00.00");
         }
     }
+    void StartQuest()
+    {
+        string[] questTypes = { "Auta Mikaa SQL:n kanssa", "Tyhjennä roskikset", "Nouda minulle tietoja" };
+        string randomQuest = questTypes[Random.Range(0, questTypes.Length)];
+        Debug.Log("New Quest: " + randomQuest);
+        QuestBox.text = randomQuest;
+        questActivated = true;
+
+
+
+        if (randomQuest == "Auta Mikaa SQL:n kanssa")
+        {
+            StartCoroutine(ActivateCharacter());
+        }
+        else if (randomQuest == "Tyhjennä roskikset")
+        {
+            StartCoroutine(SpawnTrashcans());
+        }
+        else if (randomQuest == "Nouda minulle tärkeää tietoa sisältävät laput")
+        {
+            StartCoroutine(SpawnNotes());
+        }
+    }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-
         if (collision.CompareTag("BossRoom"))
         {
-            string[] questTypes = { "Auta Mikaa SQL:n kanssa", "Tyhjennä roskikset", "Nouda minulle tietoja" };
-            string randomQuest = questTypes[Random.Range(0, questTypes.Length)];
-            Debug.Log("New Quest: " + randomQuest);
-            QuestBox.text = randomQuest;
-
-            string QuestType = randomQuest;
-            currentTime = 0;
-            questActivated = true;
+            StartQuest();
+        }
+        else if (collision.CompareTag("Player"))
+        {
+            playerNearMika = true;
         }
     }
 
-    void Quest(string QuestType)
+    void OnTriggerExit2D(Collider2D collision)
     {
-        if (QuestType == "Auta mikaa SQL:n kanssa") {
-            Debug.Log("Mika Quest");
-
-
-        }
-        else if(QuestType == "Tyhjennä roskikset")
+        if (collision.CompareTag("Player"))
         {
-            Debug.Log("Roskalava");
-
-
-        }
-        else if(QuestType == "Nouda minulle tietoja"){
-            Debug.Log("Tiedonkeruu");
-
-        }
-        else
-        {
-            questActivated = false;
+            playerNearMika = false;
+            if (questActivated && currentQuestType == "Auta Mikaa SQL:n kanssa")
+            {
+                ClearQuest();
+            }
         }
     }
 
+  
+    IEnumerator ActivateCharacter()
+    {
+        characterModel.SetActive(true);
+        yield return new WaitForSeconds(5f); // Assuming it takes 5 seconds to complete the task
+        characterModel.SetActive(false);
+        ClearQuest();
+    }
 
+    IEnumerator SpawnTrashcans()
+    {
+        foreach (Transform spawnPoint in trashcanSpawnPoints)
+        {
+            Instantiate(trashcanPrefab, spawnPoint.position, spawnPoint.rotation);
+        }
+        yield return new WaitUntil(() => trashcansCollected >= 5); // Wait until all trashcans are collected
+        ClearQuest();
+    }
+
+    IEnumerator SpawnNotes()
+    {
+        foreach (Transform spawnPoint in noteSpawnPoints)
+        {
+            Instantiate(notePrefab, spawnPoint.position, spawnPoint.rotation);
+        }
+        yield return new WaitUntil(() => notesCollected >= 10); // Wait until all notes are collected
+        ClearQuest();
+    }
+    public void CollectTrashcan()
+    {
+        trashcansCollected++;
+        QuestBox.text = "Roska kerätty! Enää " + (5 - trashcansCollected) + " jäljellä.";
+        if (trashcansCollected >= 5)
+            ClearQuest();
+    }
+    public void CollectNote()
+    {
+        notesCollected++;
+        if (notesCollected >= 10)
+            ClearQuest();
+    }
+    void ClearQuest()
+    {
+        questActivated = false;
+        QuestBox.text = "";
+        timerText.text = "23.00";
+        currentQuestType = "";
+        trashcansCollected = 0;
+        notesCollected = 0;
+    }
 }
