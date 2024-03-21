@@ -38312,6 +38312,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6185989227560367883, guid: 5564d22cd532d2b498b7748b9a103a30, type: 3}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 7709188915627513619, guid: 3ef8b90b20f56dc4f9a945652891e45c, type: 3}
     - target: {fileID: 7850462587983296706, guid: 5564d22cd532d2b498b7748b9a103a30, type: 3}
       propertyPath: m_Name
       value: Pelaaja
