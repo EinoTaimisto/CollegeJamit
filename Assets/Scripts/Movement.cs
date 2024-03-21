@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movement: MonoBehaviour
+public class Movement : MonoBehaviour
 {
-
     private Animator animator;
     private SpriteRenderer spriteRenderer;
 
@@ -15,9 +14,10 @@ public class Movement: MonoBehaviour
     private float activeMoveSpeed;
     public float dashSpeed;
 
-    public float dashLenght = .5f, dashCooldown = 1f;
+    public float dashLength = .5f, dashCooldown = 1f;
     private float dashCounter;
     private float dashCoolCounter;
+
     void Start()
     {
         Time.timeScale = 1.0f;
@@ -36,12 +36,19 @@ public class Movement: MonoBehaviour
 
         rb.velocity = moveInput * activeMoveSpeed;
 
+        // Determine animation direction
+        if (moveInput != Vector2.zero)
+        {
+            animator.SetFloat("Horizontal", moveInput.x);
+            animator.SetFloat("Vertical", moveInput.y);
+        }
+
         if (Input.GetKeyDown(KeyCode.Space))
         {
             if (dashCoolCounter <= 0 && dashCounter <= 0)
             {
                 activeMoveSpeed = dashSpeed;
-                dashCounter = dashLenght;
+                dashCounter = dashLength;
             }
         }
 
@@ -53,7 +60,6 @@ public class Movement: MonoBehaviour
             {
                 activeMoveSpeed = moveSpeed;
                 dashCoolCounter = dashCooldown;
-
             }
         }
 
