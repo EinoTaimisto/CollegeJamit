@@ -36,12 +36,6 @@ public class Movement : MonoBehaviour
 
         rb.velocity = moveInput * activeMoveSpeed;
 
-        // Determine animation direction
-        if (moveInput != Vector2.zero)
-        {
-            animator.SetFloat("Horizontal", moveInput.x);
-            animator.SetFloat("Vertical", moveInput.y);
-        }
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
