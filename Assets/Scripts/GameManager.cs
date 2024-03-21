@@ -11,12 +11,13 @@ public class NewBehaviourScript : MonoBehaviour
     public float timeElapsed;
     public GameObject PlayFieldCanvas;
 
-    [Header("Component")]
-    public Text timerText;
-
     [Header("Timer Settings")]
+    public Text timerText;
     public double currentTime;
     public bool countDown;
+
+    [Header("Quests")]
+    public Text QuestBox;
 
     void Start()
     {
@@ -29,4 +30,16 @@ public class NewBehaviourScript : MonoBehaviour
 
     }
 
+    void Quest()
+    {
+
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        string[] questTypes = { "Auta mikaa SQL:n kanssa", "Tyhjennä roskikset", "Nouda minulle tietoja" };
+        string randomQuest = questTypes[Random.Range(0, questTypes.Length)];
+        Debug.Log("New Quest: " + randomQuest);
+        QuestBox.text = randomQuest;
+    }
 }
