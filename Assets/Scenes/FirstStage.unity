@@ -38475,7 +38475,15 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2914656553447386827, guid: 5564d22cd532d2b498b7748b9a103a30, type: 3}
+      propertyPath: door
+      value: 
+      objectReference: {fileID: 1281057745}
+    - target: {fileID: 2914656553447386827, guid: 5564d22cd532d2b498b7748b9a103a30, type: 3}
       propertyPath: QuestBox
+      value: 
+      objectReference: {fileID: 1998653414}
+    - target: {fileID: 2914656553447386827, guid: 5564d22cd532d2b498b7748b9a103a30, type: 3}
+      propertyPath: KillCount
       value: 
       objectReference: {fileID: 1998653414}
     - target: {fileID: 2914656553447386827, guid: 5564d22cd532d2b498b7748b9a103a30, type: 3}
