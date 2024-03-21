@@ -2,27 +2,64 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movement : MonoBehaviour
+public class Movement: MonoBehaviour
 {
-    private Rigidbody2D body;
+
     private Animator animator;
     private SpriteRenderer spriteRenderer;
-    public Vector2 speed = new Vector2(10, 10);
+
+    public Rigidbody2D rb;
+    private Vector2 moveInput;
+    public float moveSpeed;
+
+    private float activeMoveSpeed;
+    public float dashSpeed;
+
+    public float dashLenght = .5f, dashCooldown = 1f;
+    private float dashCounter;
+    private float dashCoolCounter;
     void Start()
     {
-        body = GetComponent<Rigidbody2D>();
+        Time.timeScale = 1.0f;
+        activeMoveSpeed = moveSpeed;
+
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
-    public void FixedUpdate()
+    void Update()
     {
-        float inputX = Input.GetAxis("Horizontal");
-        float inputY = Input.GetAxis("Vertical");
+        moveInput.x = Input.GetAxisRaw("Horizontal");
+        moveInput.y = Input.GetAxisRaw("Vertical");
 
-        Vector3 movement = new Vector3(speed.x * inputX, speed.y * inputY, 0);
+        moveInput.Normalize();
 
-        movement *= Time.deltaTime;
-        transform.Translate(movement);  
+        rb.velocity = moveInput * activeMoveSpeed;
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (dashCoolCounter <= 0 && dashCounter <= 0)
+            {
+                activeMoveSpeed = dashSpeed;
+                dashCounter = dashLenght;
+            }
+        }
+
+        if (dashCounter > 0)
+        {
+            dashCounter -= Time.deltaTime;
+
+            if (dashCounter <= 0)
+            {
+                activeMoveSpeed = moveSpeed;
+                dashCoolCounter = dashCooldown;
+
+            }
+        }
+
+        if (dashCoolCounter > 0)
+        {
+            dashCoolCounter -= Time.deltaTime;
+        }
     }
 }
