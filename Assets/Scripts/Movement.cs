@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public Animator animator;
-    public SpriteRenderer spriteRenderer;
+    private Animator animator;
+    private SpriteRenderer spriteRenderer;
 
     public Rigidbody2D rb;
     private Vector2 moveInput;
