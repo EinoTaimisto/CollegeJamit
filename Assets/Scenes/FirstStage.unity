@@ -19914,6 +19914,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2026106286}
   m_LocalEulerAnglesHint: {x: 0, y: 6.136, z: 0}
+--- !u!1 &1123711436
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1123711437}
+  m_Layer: 0
+  m_Name: BulletSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1123711437
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1123711436}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.009, y: 0.388, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2119945090}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1124322730
 GameObject:
   m_ObjectHideFlags: 0
@@ -37899,9 +37930,10 @@ GameObject:
   - component: {fileID: 2119945093}
   - component: {fileID: 2119945094}
   - component: {fileID: 2119945095}
+  - component: {fileID: 2119945096}
   m_Layer: 0
   m_Name: Pelaaja
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38014,7 +38046,8 @@ Transform:
   m_LocalPosition: {x: -0.76, y: 2.28, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1123711437}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2119945093
@@ -38105,6 +38138,21 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.37, y: 0.6}
   m_Direction: 0
+--- !u!114 &2119945096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2119945085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24c624fd1ba66614595ef278e4fec64d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletSpawnPoint: {fileID: 1123711437}
+  bulletPrefab: {fileID: 2917005769739485362, guid: b9433220706957d4294e19ec2961b042, type: 3}
+  bulletSpeed: 10
 --- !u!1 &2121716243
 GameObject:
   m_ObjectHideFlags: 0

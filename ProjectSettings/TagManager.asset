@@ -6,6 +6,7 @@ TagManager:
   tags:
   - BossRoom
   - Note
+  - Bullet
   layers:
   - Default
   - TransparentFX
