@@ -21516,7 +21516,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 1281057745}
-  EnemyCount: 100
+  EnemyCount: 10
 --- !u!1 &1188962024
 GameObject:
   m_ObjectHideFlags: 0

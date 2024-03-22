@@ -176,9 +176,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 0}
+  door: {fileID: 0}
   bulletTransform: {fileID: 718852745028506071}
   canFire: 1
-  EnemyCount: 100
   timeBetweenFiring: 0.3
 --- !u!1 &7850462587983296706
 GameObject:
@@ -311,7 +311,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 68996080686254357}
   moveSpeed: 2
-  EnemyCount: 100
   dashSpeed: 4
   dashLength: 0.5
   dashCooldown: 1
