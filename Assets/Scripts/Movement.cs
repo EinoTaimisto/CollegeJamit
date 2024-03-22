@@ -10,6 +10,7 @@ public class Movement : MonoBehaviour
     public Rigidbody2D rb;
     private Vector2 moveInput;
     public float moveSpeed;
+    public int EnemyCount = 100; // Initial enemy count
 
     private float activeMoveSpeed;
     public float dashSpeed;
@@ -60,6 +61,17 @@ public class Movement : MonoBehaviour
         if (dashCoolCounter > 0)
         {
             dashCoolCounter -= Time.deltaTime;
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Debug.Log("Enemy Hit");
+            Destroy(collision.gameObject);
+            Destroy(collision.collider.gameObject);
+            EnemyCount--;
         }
     }
 }

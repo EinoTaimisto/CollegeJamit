@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 718852745028506071}
   - component: {fileID: 9066124910968197438}
+  - component: {fileID: 3280757066463382015}
   m_Layer: 0
   m_Name: BulletTransform
   m_TagString: Untagged
@@ -84,6 +85,51 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &3280757066463382015
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2804666261797444962}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.034269184, y: 0.05825734}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.28, y: 1.28}
+    newSize: {x: 1.28, y: 1.28}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.5397892, y: 0.25878286}
+  m_EdgeRadius: 0
 --- !u!1 &7318931589964229542
 GameObject:
   m_ObjectHideFlags: 0
@@ -132,6 +178,7 @@ MonoBehaviour:
   bullet: {fileID: 0}
   bulletTransform: {fileID: 718852745028506071}
   canFire: 1
+  EnemyCount: 100
   timeBetweenFiring: 0.3
 --- !u!1 &7850462587983296706
 GameObject:
@@ -264,6 +311,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 68996080686254357}
   moveSpeed: 2
+  EnemyCount: 100
   dashSpeed: 4
   dashLength: 0.5
   dashCooldown: 1
@@ -279,7 +327,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57469a6b6d3fc0e42a2eddea1a1e3a7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  QuestBox: {fileID: 0}
+  door: {fileID: 0}
+  KillCount: {fileID: 0}
   timerText: {fileID: 0}
   currentTime: 23
   countDown: 1

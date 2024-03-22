@@ -6,18 +6,17 @@ public class shooting : MonoBehaviour
 {
     private Camera mainCam;
     private Vector3 mousePos;
-    public GameObject bullet;
+    public GameObject bullet, door;
     public Transform bulletTransform;
     public bool canFire;
     private float timer;
-    public int EnemyCount = 100;
+    public int EnemyCount = 10; // Initial enemy count
     public float timeBetweenFiring;
 
     void Start()
     {
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
     }
-
 
     void Update()
     {
@@ -32,7 +31,7 @@ public class shooting : MonoBehaviour
         if (!canFire)
         {
             timer += Time.deltaTime;
-            if(timer > timeBetweenFiring )
+            if (timer > timeBetweenFiring)
             {
                 canFire = true;
                 timer = 0;
@@ -45,13 +44,20 @@ public class shooting : MonoBehaviour
             Instantiate(bullet, bulletTransform.position, Quaternion.identity);
         }
     }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Enemy"))
         {
+            Debug.Log("Enemy Hit");
             Destroy(collision.gameObject);
             Destroy(collision.collider.gameObject);
             EnemyCount--;
+
+            if (EnemyCount == 0)
+            {
+                door.SetActive(false);
+            }
         }
     }
 }
