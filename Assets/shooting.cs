@@ -10,14 +10,15 @@ public class shooting : MonoBehaviour
     public Transform bulletTransform;
     public bool canFire;
     private float timer;
+    public int EnemyCount = 100;
     public float timeBetweenFiring;
-    // Start is called before the first frame update
+
     void Start()
     {
         mainCam = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         mousePos = mainCam.ScreenToWorldPoint(Input.mousePosition);
@@ -42,6 +43,15 @@ public class shooting : MonoBehaviour
         {
             canFire = false;
             Instantiate(bullet, bulletTransform.position, Quaternion.identity);
+        }
+    }
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Destroy(collision.gameObject);
+            Destroy(collision.collider.gameObject);
+            EnemyCount--;
         }
     }
 }

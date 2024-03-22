@@ -14,7 +14,6 @@ public class NewBehaviourScript : MonoBehaviour
 
     public double currentTime;
     public bool countDown;
-
     public Enemy enemy; 
 
 
