@@ -17,12 +17,23 @@ public class NewBehaviourScript : MonoBehaviour
 
 
 
-    void Update()
+void Update()
+{
+    if (countDown)
     {
-        currentTime = countDown ? currentTime -= Time.deltaTime : currentTime += Time.deltaTime;
-        timerText.text = currentTime.ToString("00.00");
-        //KillCount.text = gun.EnemyCount.ToString();
-
+        currentTime -= Time.deltaTime;
+        if (currentTime <= 0)
+        {
+            currentTime = 0;
+            SceneManager.LoadScene("End");
+        }
     }
+    else
+    {
+        currentTime += Time.deltaTime;
+    }
+
+    timerText.text = currentTime.ToString("00.00");
+}
 
 }

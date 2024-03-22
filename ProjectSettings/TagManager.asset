@@ -7,6 +7,7 @@ TagManager:
   - BossRoom
   - Note
   - Enemy
+  - OutOfBounds
   layers:
   - Default
   - TransparentFX

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Movement : MonoBehaviour
 {
@@ -64,5 +65,17 @@ public class Movement : MonoBehaviour
         }
     }
 
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("BossRoom"))
+        {
+            SceneManager.LoadScene("End");
+        }
+        if (collision.gameObject.CompareTag("OutOfBounds"))
+        {
+            SceneManager.LoadScene("FirstStage");
+        }
+    }
 
 }
