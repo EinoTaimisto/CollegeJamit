@@ -14,7 +14,7 @@ public class NewBehaviourScript : MonoBehaviour
 
     public double currentTime;
     public bool countDown;
-    private shooting killcount;
+
 
 
     void Update()
@@ -23,11 +23,6 @@ public class NewBehaviourScript : MonoBehaviour
         timerText.text = currentTime.ToString("00.00");
         //KillCount.text = gun.EnemyCount.ToString();
 
-        if (killcount.EnemyCount == 0) 
-        {
-            door.SetActive(false);
-            //SceneManager.LoadScene("MainMenu");
-        }
     }
 
 }
