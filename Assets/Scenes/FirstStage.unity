@@ -32152,7 +32152,7 @@ GameObject:
   - component: {fileID: 1788863643}
   m_Layer: 9
   m_Name: PixelOfficeAssets_10 (4)
-  m_TagString: Untagged
+  m_TagString: BossRoom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35708,7 +35708,7 @@ GameObject:
   - component: {fileID: 1976084437}
   m_Layer: 9
   m_Name: PixelOfficeAssets_10 (3)
-  m_TagString: Untagged
+  m_TagString: BossRoom
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38671,7 +38671,7 @@ PrefabInstance:
       objectReference: {fileID: 2005140874}
     - target: {fileID: 2914656553447386827, guid: 5564d22cd532d2b498b7748b9a103a30, type: 3}
       propertyPath: currentTime
-      value: 200
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 2914656553447386827, guid: 5564d22cd532d2b498b7748b9a103a30, type: 3}
       propertyPath: PlayFieldCanvas
