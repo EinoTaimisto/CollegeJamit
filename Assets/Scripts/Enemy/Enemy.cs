@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
     public int maxHp = 100;
-    public int EnemyCount = 100;
+
     private Transform target; // Reference to the target (player) Transform
     private NavMeshAgent agent;
 
